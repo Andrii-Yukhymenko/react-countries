@@ -3,8 +3,8 @@ import Header from './components/Header.jsx';
 import { Main } from './components/Main.jsx';
 import Controls from './components/Controls.jsx';
 import { RCServices } from './services';
-import { CountriesList } from './components/CountriesList';
-import { Card } from './components/Card';
+import { CountriesList } from './components/CountriesList.jsx';
+// import { Card } from './components/Card';
 
 const services = new RCServices();
 
@@ -19,8 +19,7 @@ function App() {
       <Header />
       <Main>
         <Controls />
-        <CountriesList>
-          {countries.map((i) => {
+        <CountriesList children={{countries.map((i) => {
             let countryInfo = {
               img: i.flags.png,
               name: i.name,
@@ -30,8 +29,9 @@ function App() {
                 { title: 'Region', description: i.region },
               ],
             };
-            return <Card key={i.name} {...countryInfo} />;
-          })}
+            return <Card key={i.name}/>;
+          })}}>
+
         </CountriesList>
       </Main>
     </>

@@ -19,6 +19,6 @@ const Wrapper = styled.div`
   }
 `;
 
-export const CountriesList = () => {
-  return <Wrapper></Wrapper>;
+export const CountriesList = ({children}) => {
+  return <Wrapper>{children}</Wrapper>;
 };
