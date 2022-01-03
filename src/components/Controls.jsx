@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     align-items: center;
   }
 `
-const MyComponent = () => {
+const Controls = () => {
   const [search, setSearch] = useState('');
   return (
     <Wrapper>
@@ -37,4 +37,4 @@ const MyComponent = () => {
   );
 };
 
-export default MyComponent;
+export default Controls;

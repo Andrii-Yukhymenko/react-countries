@@ -1,39 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header.jsx';
-import { Main } from './components/Main.jsx';
-import Controls from './components/Controls.jsx';
-import { RCServices } from './services';
-import { CountriesList } from './components/CountriesList.jsx';
-// import { Card } from './components/Card';
-
-const services = new RCServices();
+import { Routes, Route } from 'react-router-dom';
+import CountriesList from './pages/CountriesList';
+import NotFound from './pages/NotFound';
+import Country from './pages/Country';
+import Header from './components/Header';
 
 function App() {
-  const [countries, setCountries] = useState([]);
-  console.log(countries);
-  useEffect(() => {
-    services.getAllCountries().then((response) => setCountries(response));
-  }, []);
   return (
     <>
       <Header />
-      <Main>
-        <Controls />
-        <CountriesList children={{countries.map((i) => {
-            let countryInfo = {
-              img: i.flags.png,
-              name: i.name,
-              info: [
-                { title: 'Population', description: i.population.toLocaleString() },
-                { title: 'Capital', description: i.capital },
-                { title: 'Region', description: i.region },
-              ],
-            };
-            return <Card key={i.name}/>;
-          })}}>
-
-        </CountriesList>
-      </Main>
+      <Routes>
+        <Route path="/" element={<CountriesList />} />
+        <Route path="/:countryId" element={<Country />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

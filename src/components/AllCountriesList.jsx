@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 100%;
   padding: 2rem 0;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -19,6 +18,6 @@ const Wrapper = styled.div`
   }
 `;
 
-export const CountriesList = ({children}) => {
+export const AllCountriesList = ({children}) => {
   return <Wrapper>{children}</Wrapper>;
 };

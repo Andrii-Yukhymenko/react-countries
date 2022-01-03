@@ -12,13 +12,11 @@ const Wrapper = styled.main`
   }
 `;
 
-export const Main = () => {
+export const Main = ({children}) => {
   return (
     <Wrapper>
       <Container>
-        <Search />
-        <CustomSelect/>
-        {/*{children}*/}
+        {children}
       </Container>
     </Wrapper>
   );
