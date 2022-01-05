@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IoMoon, IoMoonOutline } from 'react-icons/io5';
+import { IoMoon, IoSunnyOutline } from 'react-icons/io5';
 import { Container } from './Container.jsx';
 import '../styles/main.scss';
+import { Link } from 'react-router-dom';
 
 const S_HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -14,11 +15,11 @@ const S_Wrapper = styled.div`
   justify-content: space-between;
   padding: 20px 0;
 `;
-const S_Title = styled.a.attrs({
-  href: '/',
-})``;
+const S_Title = styled.p``;
 const S_ThemeSwitcher = styled.div`
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 
 const Header = () => {
@@ -32,10 +33,13 @@ const Header = () => {
     <S_HeaderEl>
       <Container>
         <S_Wrapper>
-          <S_Title>React Countries</S_Title>
+          <Link to="/">
+            <S_Title>React Countries</S_Title>
+          </Link>
+
           <S_ThemeSwitcher onClick={toggleTheme}>
-            {theme === 'light' ? <IoMoon /> : <IoMoonOutline />}
-            <span style={{ marginLeft: '15px' }}>{theme} Theme</span>
+            {theme === 'light' ? <IoMoon /> : <IoSunnyOutline />}
+            <span style={{ marginLeft: '10px' }}>{theme === 'light' ? 'Dark' : 'Light'} Theme</span>
           </S_ThemeSwitcher>
         </S_Wrapper>
       </Container>

@@ -6,8 +6,9 @@ import RCServices from '../services';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useFetching } from '../hooks/useFetching';
 import Loader from 'react-js-loader';
+import MyButton from '../components/MyButton';
+import '../styles/variables.scss';
 
-const S_BackButton = styled.button``;
 const S_Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -24,8 +25,15 @@ const S_CountryInfo = styled.div`
 const S_CountryName = styled.h1`
   margin-bottom: 20px;
 `;
+const S_InfoLists = styled.div`
+  display: flex;
+`;
 const S_InfoList = styled.ul`
   margin-bottom: 50px;
+  margin-right: 50px;
+  &:nth-last-child(1) {
+    margin-right: 0;
+  }
 `;
 const S_InfoItem = styled.li`
   padding: 5px 0;
@@ -42,11 +50,11 @@ const S_BorderCountriesList = styled.ul`
   display: flex;
   align-items: center;
   padding: 5px;
-  background-color: #0d9256;
+  background-color: rgba(34, 60, 80, 0.6);
   border-radius: 3px;
 `;
 const S_BorderCountriesItem = styled.li`
-  background-color: #d72424;
+  background-color: var(--colors-ui-base);
   padding: 5px 10px;
   border-radius: 3px;
   margin-right: 5px;
@@ -56,9 +64,10 @@ const S_BorderCountriesItem = styled.li`
 `;
 
 function Country() {
-  let [country, setCountry] = useState({ name: 'sss' });
+  let [country, setCountry] = useState({});
+  let [fullBorders, setFullBorders] = useState([]);
   const { countryId } = useParams();
-  console.log(countryId);
+
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
   const Services = new RCServices();
@@ -67,9 +76,19 @@ function Country() {
     const [res] = response;
     setCountry(res);
   });
-  useEffect(() => {
-    fetchCountry();
+  let [fetchFullBorders, fullBordersIsLoad, fullBordersLoadError] = useFetching(async () => {
+    let response = await Services.getByCodes(borders);
+    console.log(response);
+    setFullBorders(response);
+  });
+  useEffect(async () => {
+    await fetchCountry();
   }, []);
+  useEffect(async () => {
+    await fetchFullBorders();
+    console.log('fullBorders: ' + fullBorders);
+  }, [country]);
+
   const {
     flags,
     nativeName,
@@ -83,65 +102,79 @@ function Country() {
     languages,
     borders,
   } = country;
-
   return (
     <Main>
-      <S_BackButton onClick={() => goBack()}>
-        <IoArrowBackOutline /> Back
-      </S_BackButton>
-      {countryIsLoad === true ? (
+      <MyButton
+        style={{
+          marginBottom: 50,
+          borderRadius: 'var(--radii)',
+          backgroundColor: 'var(--colors-ui-base)',
+          boxShadow: 'var(--shadow)',
+        }}
+        callBack={goBack}>
+        <IoArrowBackOutline style={{ marginRight: 7 }} /> Back
+      </MyButton>
+      {countryIsLoad && fullBordersIsLoad ? (
         <S_Content>
           <S_CountryFlag src={flags.png} />
           <S_CountryInfo>
             <S_CountryName>{name}</S_CountryName>
-            <S_InfoList>
-              <S_InfoItem>
-                <b>Native Name: </b>
-                <span>{nativeName}</span>
-              </S_InfoItem>
-              <S_InfoItem>
-                <b>Population: </b>
-                <span>{population}</span>
-              </S_InfoItem>
-              <S_InfoItem>
-                <b>Region: </b>
-                <span>{region}</span>
-              </S_InfoItem>
-              <S_InfoItem>
-                <b>Sub Region: </b>
-                <span>{subregion}</span>
-              </S_InfoItem>
-              <S_InfoItem>
-                <b>Capital: </b>
-                <span>{capital}</span>
-              </S_InfoItem>
-            </S_InfoList>
-            <S_InfoList>
-              <S_InfoItem>
-                <b>Top Level Domain: </b>
-                {topLevelDomain.map((i) => (
-                  <span key={i}>{i}</span>
-                ))}
-              </S_InfoItem>
-              <S_InfoItem>
-                <b>Currencies: </b>
-                {currencies.map((i) => (
-                  <span key={i.name}>{i.name}</span>
-                ))}
-              </S_InfoItem>
-              <S_InfoItem>
-                <b>Language: </b>
-                {languages.map((i) => (
-                  <span key={i.name}>{i.name}</span>
-                ))}
-              </S_InfoItem>
-            </S_InfoList>
+            <S_InfoLists>
+              <S_InfoList>
+                <S_InfoItem>
+                  <b>Native Name: </b>
+                  <span>{nativeName}</span>
+                </S_InfoItem>
+                <S_InfoItem>
+                  <b>Population: </b>
+                  <span>{population}</span>
+                </S_InfoItem>
+                <S_InfoItem>
+                  <b>Region: </b>
+                  <span>{region}</span>
+                </S_InfoItem>
+                <S_InfoItem>
+                  <b>Sub Region: </b>
+                  <span>{subregion}</span>
+                </S_InfoItem>
+                <S_InfoItem>
+                  <b>Capital: </b>
+                  <span>{capital}</span>
+                </S_InfoItem>
+              </S_InfoList>
+              <S_InfoList>
+                <S_InfoItem>
+                  <b>Top Level Domain: </b>
+                  {topLevelDomain.map((i) => (
+                    <span key={i}>{i}</span>
+                  ))}
+                </S_InfoItem>
+                <S_InfoItem>
+                  <b>Currencies: </b>
+                  {currencies.map((i) => (
+                    <span key={i.name}>{i.name}</span>
+                  ))}
+                </S_InfoItem>
+                <S_InfoItem>
+                  <b>Language: </b>
+                  {languages.map((i) => (
+                    <span key={i.name}>{i.name}</span>
+                  ))}
+                </S_InfoItem>
+              </S_InfoList>
+            </S_InfoLists>
             <S_BorderCountries>
               <S_BorderCountriesTitle>Border Countries:</S_BorderCountriesTitle>
               <S_BorderCountriesList>
-                {borders.map((i) => (
-                  <S_BorderCountriesItem key={i}>{<Link to="/">{i}</Link>}</S_BorderCountriesItem>
-                ))}
+                {borders.length !== 0 ? (
+                  fullBorders.map((i) => (
+                    <a key={i.name} href={'/' + i.name}>
+                      <S_BorderCountriesItem>{i.alpha3Code}</S_BorderCountriesItem>
+                    </a>
+                  ))
+                ) : (
+                  <S_BorderCountriesItem>None</S_BorderCountriesItem>
+                )}
               </S_BorderCountriesList>
             </S_BorderCountries>
           </S_CountryInfo>

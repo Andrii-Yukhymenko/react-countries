@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Search } from './Search.jsx';
 import { CustomSelect } from './CustomSelect.jsx';
 
@@ -13,15 +13,16 @@ const options = [
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
 
   @media (max-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-`
+`;
 const Controls = () => {
   const [search, setSearch] = useState('');
   return (

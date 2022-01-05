@@ -8,21 +8,13 @@ body[data-theme='light'] {
   --colors-bg: hsl(0, 0%, 98%);
   --colors-ui-base: hsl(0, 0%, 100%);
   --shadow: 0px 7px 6px -5px rgba(34, 60, 80, 0.6);
-
-  color: var(--colors-text);
-  background-color: var(--colors-bg);
 }
 
 body[data-theme='dark'] {
   --colors-text: hsl(0, 0%, 100%);
   --colors-bg: hsl(207, 26%, 17%);
-  --colors-ui-base: hsl(0, 0%, 100%);
+  --colors-ui-base: hsl(210, 22%, 22%);
   --shadow: 0px 7px 6px -5px rgba(34, 60, 80, 0.6);
-
-  color: var(--colors-text);
-  background-color: var(--colors-bg);
 }
 
-body{
-  --radii: 5px;
-}
+

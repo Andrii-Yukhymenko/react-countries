@@ -21,8 +21,8 @@ export default class RCServices {
       return a.json();
     }
   }
-  async filterByCodes(codes) {
-    let a = await fetch(SPECIFIC_COUNTRY + 'alpha?codes=' + codes.join(','));
+  async getByCodes(codes) {
+    let a = await fetch(BASE_URL + 'alpha?codes=' + codes.join(','));
     if (!a.ok){
       console.log('ERROR')
     } else {

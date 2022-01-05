@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   padding: 2rem 0;
-  display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
 
@@ -18,6 +17,10 @@ const Wrapper = styled.div`
   }
 `;
 
-export const AllCountriesList = ({children}) => {
-  return <Wrapper>{children}</Wrapper>;
+export const AllCountriesList = ({ children, countriesIsLoad }) => {
+  return (
+    <Wrapper style={countriesIsLoad ? { display: 'grid' } : { display: 'block' }}>
+      {children}
+    </Wrapper>
+  );
 };
