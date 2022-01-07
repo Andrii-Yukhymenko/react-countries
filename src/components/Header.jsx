@@ -26,9 +26,13 @@ const S_ThemeSwitcher = styled.div`
 `;
 
 const Header = () => {
-  const [theme, setTheme] = useState('light');
+  let LSTheme = localStorage.getItem('theme');
+  const [theme, setTheme] = useState(LSTheme ? LSTheme : 'light');
 
-  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+  const toggleTheme = () => {
+    setTheme(LSTheme === 'light' ? 'dark' : 'light');
+    localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
+  };
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
   });
