@@ -15,7 +15,10 @@ const S_Wrapper = styled.div`
   justify-content: space-between;
   padding: 20px 0;
 `;
-const S_Title = styled.p``;
+const S_Title = styled.p`
+  font-size: 20px;
+  font-weight: bold;
+`;
 const S_ThemeSwitcher = styled.div`
   cursor: pointer;
   display: flex;
