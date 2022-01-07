@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import '../styles/variables.scss'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const S_Wrapper = styled.article``;
-const S_CardImage = styled.img`
+const S_CardImage = styled(LazyLoadImage)`
   height: 150px;
   width: 100%;
   object-fit: cover;
@@ -27,11 +28,14 @@ const S_CardListItem = styled.li`
   }
 `;
 
-export const Card = ({ img, name, info }) => {
+export const Card = ({ img: imgSrc, name, info }) => {
   return (
     <Link to={'/' + name}>
       <S_Wrapper>
-        <S_CardImage src={img} />
+        <S_CardImage
+          alt={name}
+          src={imgSrc}
+        />
         <S_CardBody>
           <S_CardTitle>{name}</S_CardTitle>
           <S_CardList>
