@@ -18,9 +18,10 @@ const Wrapper = styled.div`
   justify-content: space-between;
 
   @media (max-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    & > * {
+      width: 100%;
+    }
   }
 `;
 const Controls = () => {

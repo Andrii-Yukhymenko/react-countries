@@ -16,14 +16,14 @@ const S_Content = styled.div`
 `;
 const S_CountryFlag = styled.img`
   width: 50%;
-  padding-right: 50px;
+  margin-right: 5em;
 `;
 const S_CountryInfo = styled.div`
   width: 50%;
   padding-left: 50px;
 `;
 const S_CountryName = styled.h1`
-  margin-bottom: 20px;
+  margin-bottom: 1.5em;
 `;
 const S_InfoLists = styled.div`
   display: flex;
@@ -41,26 +41,23 @@ const S_InfoItem = styled.li`
 const S_BorderCountries = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
 `;
 const S_BorderCountriesTitle = styled.p`
   margin-right: 10px;
 `;
 const S_BorderCountriesList = styled.ul`
-  display: flex;
+  display: grid;
   align-items: center;
   padding: 5px;
   background-color: rgba(34, 60, 80, 0.6);
   border-radius: 3px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
 `;
 const S_BorderCountriesItem = styled.li`
   background-color: var(--colors-ui-base);
   padding: 5px 10px;
   border-radius: 3px;
-  margin-right: 5px;
-  &:nth-child(1) {
-    margin-left: 5px;
-  }
 `;
 
 function Country() {
@@ -168,9 +165,9 @@ function Country() {
               <S_BorderCountriesList>
                 {borders.length !== 0 ? (
                   fullBorders.map((i) => (
-                    <a key={i.name} href={'/' + i.name}>
-                      <S_BorderCountriesItem>{i.alpha3Code}</S_BorderCountriesItem>
-                    </a>
+                    <S_BorderCountriesItem key={i.name}>
+                      <a href={'/' + i.name}>{i.alpha3Code}</a>
+                    </S_BorderCountriesItem>
                   ))
                 ) : (
                   <S_BorderCountriesItem>None</S_BorderCountriesItem>

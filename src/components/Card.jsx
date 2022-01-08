@@ -10,6 +10,10 @@ const S_CardImage = styled(LazyLoadImage)`
   width: 100%;
   object-fit: cover;
   object-position: center;
+
+  @media (max-width: 425px) {
+    height: 200px;
+  }
 `;
 const S_CardBody = styled.div`
   background-color: var(--colors-ui-base);
