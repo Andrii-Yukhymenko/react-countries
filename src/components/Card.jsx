@@ -46,7 +46,7 @@ export const Card = ({ img: imgSrc, name, info }) => {
             {info.map((i) => {
               return (
                 <S_CardListItem key={i.title}>
-                  <b>{i.title}:</b>
+                  <b>{i.title}: </b>
                   {i.description}
                 </S_CardListItem>
               );

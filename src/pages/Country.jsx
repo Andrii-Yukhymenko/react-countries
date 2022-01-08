@@ -13,20 +13,49 @@ const S_Content = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 const S_CountryFlag = styled.img`
   width: 50%;
   margin-right: 5em;
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    width: 70%;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 425px){
+    width: 100%;
+  }
 `;
 const S_CountryInfo = styled.div`
   width: 50%;
-  padding-left: 50px;
+  margin-left: 5em;
+
+  @media (max-width: 768px){
+    margin-left: 0;
+    width: 70%;
+  }
+
+  @media (max-width: 425px){
+    width: 100%;
+  }
 `;
 const S_CountryName = styled.h1`
   margin-bottom: 1.5em;
+  font-size: 20px;
+  font-weight: bold;
 `;
 const S_InfoLists = styled.div`
   display: flex;
+
+  @media (max-width: 768px){
+    justify-content: space-between;
+  }
 `;
 const S_InfoList = styled.ul`
   margin-bottom: 50px;
@@ -44,6 +73,7 @@ const S_BorderCountries = styled.div`
 `;
 const S_BorderCountriesTitle = styled.p`
   margin-right: 10px;
+  padding-top: 10px;
 `;
 const S_BorderCountriesList = styled.ul`
   display: grid;
@@ -53,6 +83,10 @@ const S_BorderCountriesList = styled.ul`
   border-radius: 3px;
   grid-template-columns: repeat(4, 1fr);
   gap: 5px;
+
+  @media (max-width: 425px){
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 const S_BorderCountriesItem = styled.li`
   background-color: var(--colors-ui-base);
@@ -148,15 +182,11 @@ function Country() {
                 </S_InfoItem>
                 <S_InfoItem>
                   <b>Currencies: </b>
-                  {currencies.map((i) => (
-                    <span key={i.name}>{i.name}</span>
-                  ))}
+                  <span>{currencies.map((i) => i.name).join(', ')}</span>
                 </S_InfoItem>
                 <S_InfoItem>
                   <b>Language: </b>
-                  {languages.map((i) => (
-                    <span key={i.name}>{i.name}</span>
-                  ))}
+                  <span>{languages.map((i) => i.name).join(', ')}</span>
                 </S_InfoItem>
               </S_InfoList>
             </S_InfoLists>
