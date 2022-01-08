@@ -176,9 +176,7 @@ function Country() {
               <S_InfoList>
                 <S_InfoItem>
                   <b>Top Level Domain: </b>
-                  {topLevelDomain.map((i) => (
-                    <span key={i}>{i}</span>
-                  ))}
+                    <span>{topLevelDomain.map((i) => i).join(', ')}</span>
                 </S_InfoItem>
                 <S_InfoItem>
                   <b>Currencies: </b>
@@ -192,8 +190,8 @@ function Country() {
             </S_InfoLists>
             <S_BorderCountries>
               <S_BorderCountriesTitle>Border Countries:</S_BorderCountriesTitle>
-              <S_BorderCountriesList>
-                {borders.length !== 0 ? (
+              <S_BorderCountriesList style={{gridTemplateColumns: `repeat(${borders ? (fullBorders.length < 4 ? fullBorders.length : 4) : 1}, 1fr)`}}>
+                {borders ? (
                   fullBorders.map((i) => (
                     <S_BorderCountriesItem key={i.name}>
                       <a href={'/' + i.name}>{i.alpha3Code}</a>

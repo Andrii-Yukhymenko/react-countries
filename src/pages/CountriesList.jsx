@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Main } from '../components/Main.jsx';
 import Controls from '../components/Controls.jsx';
-import RCServices from '../services';
 import { AllCountriesList } from '../components/AllCountriesList.jsx';
 import { Card } from '../components/Card';
-import { useFetching } from '../hooks/useFetching';
 import Loader from 'react-js-loader';
 
-const services = new RCServices();
-
-function CountriesList() {
-  const [countries, setCountries] = useState([]);
-  const [fetchCountries, countriesIsLoad, countriesLoadError] = useFetching(() => {
-    services.getAllCountries().then((response) => setCountries(response));
-  });
-
-  useEffect(() => {
-    fetchCountries();
-  }, []);
-
+function CountriesList({countries, setCountries, fetchCountries, countriesIsLoad, countriesLoadError}) {
   return (
     <>
       <Main>
