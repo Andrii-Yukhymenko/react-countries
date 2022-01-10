@@ -19,7 +19,7 @@ function CountriesList({countries, setCountries, fetchCountries, countriesIsLoad
                 // TODO записать этот кусок кода в полезные кейсы. Используеться массив, потому что данных может быть сколько угодно
                 info: [
                   { title: 'Population', description: i.population.toLocaleString() },
-                  { title: 'Capital', description: i.capital },
+                  { title: 'Capital', description: i.capital ? i.capital : '-' },
                   { title: 'Region', description: i.region },
                 ],
               };

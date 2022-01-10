@@ -1,6 +1,6 @@
 import React from 'react';
 import BorderCountries from './BorderCountries';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const S_Wrapper = styled.div`
   width: 50%;
@@ -38,7 +38,19 @@ const S_Item = styled.li`
   padding: 5px 0;
 `;
 
-function CountryInfo({borders, fullBorders, name, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages}) {
+function CountryInfo({
+  borders,
+  fullBorders,
+  name = '-',
+  nativeName = '-',
+  population = '-',
+  region = '-',
+  subregion = '-',
+  capital = '-',
+  topLevelDomain,
+  currencies,
+  languages,
+}) {
   return (
     <S_Wrapper>
       <S_CountryName>{name}</S_CountryName>
@@ -68,15 +80,15 @@ function CountryInfo({borders, fullBorders, name, nativeName, population, region
         <S_List>
           <S_Item>
             <b>Top Level Domain: </b>
-            <span>{topLevelDomain.map((i) => i).join(', ')}</span>
+            <span>{topLevelDomain ? topLevelDomain.map((i) => i).join(', ') : '-'}</span>
           </S_Item>
           <S_Item>
             <b>Currencies: </b>
-            <span>{currencies.map((i) => i.name).join(', ')}</span>
+            <span>{currencies ? currencies.map((i) => i.name).join(', ') : '-'}</span>
           </S_Item>
           <S_Item>
             <b>Language: </b>
-            <span>{languages.map((i) => i.name).join(', ')}</span>
+            <span>{languages ? languages.map((i) => i.name).join(', ') : '-'}</span>
           </S_Item>
         </S_List>
       </S_Lists>
