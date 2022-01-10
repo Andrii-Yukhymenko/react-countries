@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Search } from './Search.jsx';
 import { CustomSelect } from './CustomSelect.jsx';
 
 const options = [
   { value: 'Africa', label: 'Africa' },
-  { value: 'America', label: 'America' },
+  { value: 'Americas', label: 'Americas' },
   { value: 'Asia', label: 'Asia' },
-  { value: 'Europa', label: 'Europa' },
+  { value: 'Europe', label: 'Europe' },
   { value: 'Oceania', label: 'Oceania' },
 ];
 
@@ -24,16 +24,20 @@ const Wrapper = styled.div`
     }
   }
 `;
-const Controls = () => {
+const Controls = ({filterCountries}) => {
   const [search, setSearch] = useState('');
+  const [select, setSelect] = useState('');
+  useEffect(() => filterCountries(search, select), [search, select]);
+
   return (
     <Wrapper>
       <Search search={search} setSearch={setSearch} />
       <CustomSelect
         options={options}
         placeholder="Filter by region"
-        isClearable={true}
+        isClearable={false}
         isSearchable={false}
+        onChange={(e) => setSelect(e.value)}
       />
     </Wrapper>
   );
