@@ -13,16 +13,19 @@ const S_HeaderEl = styled.header`
 const S_Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  align-items: center;
+  padding: 10px 0;
 `;
 const S_Title = styled.p`
   font-size: 20px;
   font-weight: bold;
+  padding: 15px 15px 15px 0;
 `;
 const S_ThemeSwitcher = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  padding: 15px 0 15px 15px;
 `;
 
 const Header = () => {
