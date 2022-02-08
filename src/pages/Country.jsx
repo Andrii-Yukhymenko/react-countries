@@ -52,15 +52,16 @@ function Country() {
   });
   useEffect(async () => {
     await fetchCountry();
-  }, []);
+  }, [countryId]);
+
   useEffect(async () => {
     await fetchFullBorders();
   }, [country]);
-
   const { flags , borders } = country;
 
   return (
     <Main>
+      <button onClick={() => navigate("/Ukraine")}>test</button>
       <MyButton
         style={{
           marginBottom: 50,
