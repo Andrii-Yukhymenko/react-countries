@@ -61,7 +61,6 @@ function Country() {
 
   return (
     <Main>
-      <button onClick={() => navigate("/Ukraine")}>test</button>
       <MyButton
         style={{
           marginBottom: 50,

@@ -30,7 +30,13 @@ const S_ThemeSwitcher = styled.div`
 
 const Header = () => {
   let LSTheme = localStorage.getItem('theme');
-  const [theme, setTheme] = useState(LSTheme ? LSTheme : 'light');
+
+  if (LSTheme === null) {
+    LSTheme = "light";
+    localStorage.setItem("theme", "light");
+  }
+
+  const [theme, setTheme] = useState(LSTheme);
 
   const toggleTheme = () => {
     setTheme(LSTheme === 'light' ? 'dark' : 'light');

@@ -47,9 +47,11 @@ function BorderCountries({ borders, fullBorders }) {
         }}>
         {borders ? (
           fullBorders.map((i) => (
-            <S_Item key={i.name}>
-              <Link to={'/' + i.name}>{i.alpha3Code}</Link>
+              <Link key={i.name} to={'/' + i.name}>
+            <S_Item>
+              {i.alpha3Code}
             </S_Item>
+              </Link>
           ))
         ) : (
           <S_Item>None</S_Item>
