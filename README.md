@@ -4,6 +4,8 @@
 
 Дата начала работы: 03.01.2022
 
+[Ссылка на это приложение в моем портфолио](https://border-radius.andrii-yukhymenko.me/)
+
 ### Использованные технологии:
 - Create react app
 - ReactJS
